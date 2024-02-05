@@ -22,12 +22,15 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
       <a class="nav-item nav-link" href="#">Features</a>
-      <a id="cart" class="nav-item nav-link" href="#">Cart(0)</a>
-      <a class="nav-item nav-link disabled" href="#">Disabled</a>
+<button type="button" id="cart" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
+sagittis lacus vel augue laoreet rutrum faucibus.">
+  Cart(0)
+</button>      <a class="nav-item nav-link disabled" href="#">Disabled</a>
     </div>
   </div>
 </nav>
@@ -116,5 +119,15 @@
     localStorage.setItem('cart',JSON.stringify(cart));
     document.getElementById("cart").innerHTML = "Cart(" + Object.keys(cart).length + ")";
   });
+
+  document.getElementById("cart").setAttribute('data-bs-content', '<h5>This is your Cart</h5>');
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[id="cart"]'))
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl,
+
+            {
+                html: true
+            })
+    });
 </script>
 </html>
